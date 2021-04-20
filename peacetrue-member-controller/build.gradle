@@ -1,0 +1,11 @@
+description '会员控制器'
+
+dependencies {
+    api project(":peacetrue-member-service-api")
+    implementation "com.github.peacetrue:peacetrue-spring"
+    implementation "org.springframework.boot:spring-boot-starter-webflux"
+    implementation "org.springframework.data:spring-data-commons"
+
+    testImplementation project(':peacetrue-member-service-impl')
+    testImplementation project(path: ':peacetrue-member-service-impl', configuration: 'testArtifacts')
+}

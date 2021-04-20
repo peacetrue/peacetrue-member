@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        maven { url 'https://repo.spring.io/plugins-release' }
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.3.3.RELEASE")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+description '会员应用'
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    runtimeOnly 'dev.miku:r2dbc-mysql'
+    runtimeOnly 'mysql:mysql-connector-java'
+    implementation 'com.github.peacetrue:peacetrue-result'
+    implementation 'com.github.peacetrue:peacetrue-spring'
+    implementation 'com.github.peacetrue:peacetrue-spring-security'
+    implementation 'com.github.peacetrue:peacetrue-operator'
+    implementation 'org.flywaydb:flyway-core'
+    implementation project(":peacetrue-member-controller")
+    implementation project(":peacetrue-member-service-impl")
+
+}

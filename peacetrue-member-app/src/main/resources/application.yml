@@ -1,0 +1,32 @@
+server:
+  port: 8607
+
+db:
+  hostname: localhost
+  username: ${MICROSERVICE_DB_USERNAME:peacetrue}
+  password: ${MICROSERVICE_DB_PASSWORD:password}
+  schema: common
+
+spring:
+  application:
+    name: peacetrue-member
+  r2dbc:
+    url: r2dbc:mysql://${db.hostname}:3306/${db.schema}?autoreconnect=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${db.username}
+    password: ${db.password}
+#  flyway:
+#    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
+logging:
+  level:
+    root: debug
+
+

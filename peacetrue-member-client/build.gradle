@@ -1,0 +1,9 @@
+description '会员客户端'
+
+dependencies {
+    api project(":peacetrue-member-service-api")
+    api 'org.springframework.data:spring-data-commons'
+//    api 'com.playtika.reactivefeign:feign-reactor-core'
+//    api 'com.playtika.reactivefeign:feign-reactor-webclient'
+    api 'com.playtika.reactivefeign:feign-reactor-spring-configuration'
+}
