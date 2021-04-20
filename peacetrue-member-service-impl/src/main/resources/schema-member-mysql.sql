@@ -12,6 +12,8 @@ create table member
 
 insert into member (id, username, password, creator_id, created_time, modifier_id, modified_time)
 values (1, 'system', '{noop}system', 1, current_timestamp, 1, current_timestamp);
-
+update member
+set id=0
+where username = 'system';
 insert into member (id, username, password, creator_id, created_time, modifier_id, modified_time)
 values (2, 'admin', '{noop}admin', 1, current_timestamp, 1, current_timestamp);
