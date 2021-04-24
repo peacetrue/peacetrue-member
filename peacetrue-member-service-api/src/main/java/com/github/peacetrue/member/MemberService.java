@@ -15,6 +15,11 @@ import javax.annotation.Nullable;
  */
 public interface MemberService {
 
+    /** 系统会员 id */
+    Long MEMBER_SYSTEM_ID = 0L;
+    /** 管理员会员 id */
+    Long MEMBER_ADMIN_ID = 1L;
+
     /** 新增 */
     Mono<MemberVO> add(MemberAdd params);
 

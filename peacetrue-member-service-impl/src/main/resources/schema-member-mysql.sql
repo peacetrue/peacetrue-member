@@ -11,9 +11,9 @@ create table member
 ) comment '会员';
 
 insert into member (id, username, password, creator_id, created_time, modifier_id, modified_time)
-values (1, 'system', '{noop}system', 1, current_timestamp, 1, current_timestamp);
+values (0, 'system', '{noop}system', 0, current_timestamp, 0, current_timestamp);
 update member
 set id=0
 where username = 'system';
 insert into member (id, username, password, creator_id, created_time, modifier_id, modified_time)
-values (2, 'admin', '{noop}admin', 1, current_timestamp, 1, current_timestamp);
+values (1, 'admin', '{noop}admin', 0, current_timestamp, 0, current_timestamp);

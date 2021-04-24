@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import java.util.function.Consumer;
@@ -19,15 +20,16 @@ import static com.github.peacetrue.member.MemberServiceImplTest.EASY_RANDOM;
  */
 @SpringBootTest(classes = TestControllerMemberAutoConfiguration.class)
 @AutoConfigureWebTestClient
+@ActiveProfiles({"member-controller-test", "member-service-test"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class MemberControllerTest {
+class MemberControllerTest {
 
     @Autowired
     private WebTestClient client;
 
     @Test
     @Order(10)
-    public void add() {
+    void add() {
         this.client.post().uri("/members")
                 .bodyValue(MemberServiceImplTest.ADD)
                 .accept(MediaType.APPLICATION_JSON)
@@ -39,7 +41,7 @@ public class MemberControllerTest {
 
     @Test
     @Order(20)
-    public void queryForPage() {
+    void queryForPage() {
         this.client.get()
                 .uri("/members?page=0")
                 .accept(MediaType.APPLICATION_JSON)
@@ -51,7 +53,7 @@ public class MemberControllerTest {
 
     @Test
     @Order(30)
-    public void queryForList() {
+    void queryForList() {
         this.client.get()
                 .uri("/members")
                 .accept(MediaType.APPLICATION_JSON)
@@ -63,7 +65,7 @@ public class MemberControllerTest {
 
     @Test
     @Order(40)
-    public void get() {
+    void get() {
         this.client.get()
                 .uri("/members/{0}", MemberServiceImplTest.vo.getId())
                 .accept(MediaType.APPLICATION_JSON)
@@ -76,7 +78,7 @@ public class MemberControllerTest {
 
     @Test
     @Order(45)
-    public void exists() {
+    void exists() {
         this.client.get()
                 .uri("/members/exists?id=", MemberServiceImplTest.vo.getId())
                 .accept(MediaType.APPLICATION_JSON)
@@ -89,7 +91,7 @@ public class MemberControllerTest {
 
     @Test
     @Order(50)
-    public void modify() {
+    void modify() {
         MemberModify modify = MemberServiceImplTest.MODIFY;
         modify.setId(MemberServiceImplTest.vo.getId());
         this.client.put()
@@ -104,7 +106,7 @@ public class MemberControllerTest {
 
     @Test
     @Order(55)
-    public void modifyPassword() {
+    void modifyPassword() {
         MemberModifyPassword modify = EASY_RANDOM.nextObject(MemberModifyPassword.class);
         modify.setId(MemberServiceImplTest.vo.getId());
         modify.setOldPassword(MemberServiceImplTest.ADD.getPassword());
@@ -121,7 +123,7 @@ public class MemberControllerTest {
 
     @Test
     @Order(56)
-    public void resetPassword() {
+    void resetPassword() {
         MemberResetPassword modify = new MemberResetPassword();
         modify.setId(MemberServiceImplTest.vo.getId());
         modify.setOperatorId(MemberServiceImplTest.vo.getId());
@@ -137,7 +139,7 @@ public class MemberControllerTest {
 
     @Test
     @Order(60)
-    public void delete() {
+    void delete() {
         this.client.delete()
                 .uri("/members/{0}", MemberServiceImplTest.vo.getId())
                 .accept(MediaType.APPLICATION_JSON)
@@ -149,7 +151,7 @@ public class MemberControllerTest {
 
     @Test
     @Order(70)
-    public void register() {
+    void register() {
         this.client.post().uri("/members/register")
                 .bodyValue(MemberServiceImplTest.REGISTER)
                 .accept(MediaType.APPLICATION_JSON)

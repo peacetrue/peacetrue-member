@@ -7,6 +7,7 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.test.context.ActiveProfiles;
 import reactor.test.StepVerifier;
 
 import java.io.Serializable;
@@ -17,10 +18,11 @@ import java.io.Serializable;
  * @since : 2020-05-22 16:43
  **/
 @SpringBootTest(classes = TestServiceMemberAutoConfiguration.class)
+@ActiveProfiles({"member-service-test"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class MemberServiceImplTest {
 
-    public static final EasyRandom EASY_RANDOM = new EasyRandom(new EasyRandomParameters().randomize(Serializable.class, () -> "operatorName"));
+    public static final EasyRandom EASY_RANDOM = new EasyRandom(new EasyRandomParameters().randomize(Serializable.class, () -> 1L));
     public static final MemberAdd ADD = EASY_RANDOM.nextObject(MemberAdd.class);
     public static final MemberModify MODIFY = EASY_RANDOM.nextObject(MemberModify.class);
     public static final MemberRegister REGISTER = EASY_RANDOM.nextObject(MemberRegister.class);

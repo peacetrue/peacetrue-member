@@ -11,7 +11,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "peacetrue.user")
+@ConfigurationProperties(prefix = "peacetrue.member")
 public class ControllerMemberProperties {
 
 }
